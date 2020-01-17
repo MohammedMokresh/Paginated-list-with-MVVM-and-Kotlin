@@ -17,8 +17,7 @@ import java.util.concurrent.Executors
 class GenericBoundaryCallback<T>(
     private val removeAllItems: () -> Completable,
     private val getPage: (page: Int) -> Single<List<T>>,
-    private val insertAllItems: (items: List<T>) -> Completable,
-    private val networkPageSize: Int
+    private val insertAllItems: (items: List<T>) -> Completable
 ) : PagedList.BoundaryCallback<Result>() {
 
     private val helper =
@@ -28,12 +27,12 @@ class GenericBoundaryCallback<T>(
     val networkState: MutableLiveData<NetworkState> = helper.createStatusLiveData()
 
     private val compositeDisposable: CompositeDisposable = CompositeDisposable()
-    private var offsetCount = 0
+    private var offsetCount = 1
 
     fun refreshPage() {
         networkState.value =
             NetworkState.LOADING
-        getPage(0)
+        getPage(1)
             .subscribeOn(Schedulers.io())
             .flatMapCompletable {
                 removeAllItems()
@@ -86,7 +85,7 @@ class GenericBoundaryCallback<T>(
             }.subscribeBy(
                 onComplete = {
                     pagingRequest.recordSuccess()
-                    offsetCount += networkPageSize
+                    offsetCount += 1
                 },
                 onError = {
                     networkState.postValue(

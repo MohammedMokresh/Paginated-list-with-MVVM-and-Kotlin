@@ -14,7 +14,7 @@ interface MovieRepository {
 
 
     companion object {
-        const val SIZE_PAGE = 30
+        const val SIZE_PAGE = 20
     }
 
 
@@ -34,11 +34,12 @@ interface MovieRepository {
                 val bc: GenericBoundaryCallback<Result> by lazy {
                     GenericBoundaryCallback(
                         { dao.deleteAll() },
-                        { character(it, SIZE_PAGE) },
-                        { insertCharacters(it) },
-                        SIZE_PAGE
+                        { movie(it) },
+                        { insertMovies(it) }
                     )
                 }
+
+
 
                 override fun getDataSource() =
                     dao.getAllPaged().map { it }.toLiveData(
@@ -52,12 +53,12 @@ interface MovieRepository {
             }
         }
 
-        fun insertCharacters(list: List<Result>): Completable {
+        fun insertMovies(list: List<Result>): Completable {
             return dao.insertAll(list.map { it })
         }
 
-        fun character(offset: Int, pageSize: Int): Single<List<Result>> =
-            service.movies(offset, pageSize)
+        fun movie(offset: Int): Single<List<Result>> =
+            service.movies(offset)
                 .map { it }
 
     }
