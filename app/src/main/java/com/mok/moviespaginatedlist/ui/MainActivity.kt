@@ -14,6 +14,7 @@ import com.mok.moviespaginatedlist.utils.Status
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import timber.log.Timber
 
+
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
@@ -29,7 +30,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private val adapter: MoviesAdapter by lazy {
-        MoviesAdapter()
+        MoviesAdapter(supportFragmentManager)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -73,6 +74,22 @@ class MainActivity : AppCompatActivity() {
                 adapter.setNetworkState(it)
             })
 
+
+    }
+
+    @Suppress("SENSELESS_COMPARISON")
+    override fun onBackPressed() {
+        super.onBackPressed()
+        if (supportFragmentManager != null) {
+
+
+            val trans =
+                supportFragmentManager.beginTransaction()
+            trans.remove(MovieDetailsFragment.newInstance(0))
+            trans.commit()
+            supportFragmentManager.popBackStack()
+
+        }
 
     }
 

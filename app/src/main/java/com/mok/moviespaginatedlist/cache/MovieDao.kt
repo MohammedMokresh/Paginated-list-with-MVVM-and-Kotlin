@@ -1,9 +1,8 @@
 package com.mok.moviespaginatedlist.cache
 
+import androidx.lifecycle.LiveData
 import androidx.paging.DataSource
 import androidx.room.*
-import com.mok.moviespaginatedlist.genres.Genre
-import com.mok.moviespaginatedlist.languages.LanguagesResponseBody
 import com.mok.moviespaginatedlist.models.Result
 import io.reactivex.Completable
 import io.reactivex.Single
@@ -15,6 +14,10 @@ interface MovieDao {
 
     @Query("SELECT * FROM movie")
     fun movies(): Single<List<Result>>
+
+
+    @Query("SELECT * FROM movie Where id == :movieId ")
+    fun getMovieById(movieId: Int): LiveData <Result>
 
 
     @Transaction
@@ -30,7 +33,6 @@ interface MovieDao {
 
     @Query("DELETE FROM movie WHERE id NOT IN (SELECT id from movie ORDER BY release_date DESC limit 10)")
     fun deleteAllExceptfirstTen()
-
 
 
 }

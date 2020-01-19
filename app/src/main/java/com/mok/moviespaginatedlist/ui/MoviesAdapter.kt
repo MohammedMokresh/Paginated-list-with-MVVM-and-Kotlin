@@ -1,33 +1,32 @@
 package com.mok.moviespaginatedlist.ui
 
-import android.util.Log
 import android.view.ViewGroup
+import androidx.fragment.app.FragmentManager
 import androidx.paging.PagedListAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.mok.moviespaginatedlist.models.Result
 import com.mok.moviespaginatedlist.utils.NetworkState
 
-class MoviesAdapter : PagedListAdapter<Result, RecyclerView.ViewHolder>(POST_COMPARATOR) {
+class MoviesAdapter(fragmentManager: FragmentManager) :
+    PagedListAdapter<Result, RecyclerView.ViewHolder>(POST_COMPARATOR) {
 
     private var networkState: NetworkState? = null
+    private var fragmentManager: FragmentManager = fragmentManager
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
-        return MovieViewHolder.create(parent)
+        return MovieViewHolder.create(parent, fragmentManager)
     }
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         holder as MovieViewHolder
 
-        Log.e("itemcount", itemCount.toString())
-
-        if (itemCount!=0)
-        holder.bindTo(getItem(position))
+        if (itemCount != 0)
+            holder.bindTo(getItem(position))
     }
 
 
     fun hasExtraRow() = networkState != null && networkState != NetworkState.LOADED
-
 
 
     fun setNetworkState(newNetworkState: NetworkState?) {

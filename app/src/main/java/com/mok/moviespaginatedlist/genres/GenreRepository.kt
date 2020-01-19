@@ -21,6 +21,8 @@ interface GenreRepository {
     fun cleared()
     fun insertGenresInLocal()
 
+    fun getGenreById(genreId: Int): LiveData<Genre>
+
 
     open class GenreRepositoryImpl(
         private val service: MoviesListService,
@@ -56,6 +58,11 @@ interface GenreRepository {
                             )
                     }
                 ).addTo(compositeDisposable)
+        }
+
+        override fun getGenreById(genreId: Int): LiveData<Genre> {
+            return dao.getGenreById(genreId)
+
         }
 
 

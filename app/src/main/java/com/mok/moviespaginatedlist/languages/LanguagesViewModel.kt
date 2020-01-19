@@ -12,6 +12,11 @@ class LanguagesViewModel(
         return languagesRepository.getAllLanguages()
     }
 
+    fun getLanguageFromIso(iso: String): LiveData<LanguagesResponseBody> {
+        return languagesRepository.getLanguageFromIso(iso)
+    }
+
+
     fun callAndSaveLanguages() {
         return languagesRepository.callAndSaveLanguages()
     }

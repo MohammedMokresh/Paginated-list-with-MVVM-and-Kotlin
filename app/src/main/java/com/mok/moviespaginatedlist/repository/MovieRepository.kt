@@ -1,5 +1,6 @@
 package com.mok.moviespaginatedlist.repository
 
+import androidx.lifecycle.LiveData
 import androidx.paging.toLiveData
 import com.mok.moviespaginatedlist.MoviesListService
 import com.mok.moviespaginatedlist.cache.MovieDao
@@ -22,6 +23,8 @@ interface MovieRepository {
     fun getListable(): Listing<Result>
 
     fun deleteAllExceptfirstTen()
+
+    fun getMovieById(movieId: Int): LiveData<Result>
 
     open class MoviesRepositoryImpl(
         private val service: MoviesListService,
@@ -59,6 +62,10 @@ interface MovieRepository {
             Completable.fromAction(this::releaseTheExtraCache)
                 .subscribeOn(Schedulers.io())
                 .subscribe()
+        }
+
+        override fun getMovieById(movieId: Int): LiveData<Result> {
+            return dao.getMovieById(movieId)
         }
 
 

@@ -20,6 +20,7 @@ interface LanguagesRepository {
     fun getAllLanguages(): LiveData<List<LanguagesResponseBody>>
     fun cleared()
     fun callAndSaveLanguages()
+    fun getLanguageFromIso(iso: String): LiveData<LanguagesResponseBody>
 
 
     open class LanguagesRepositoryImpl(
@@ -64,6 +65,11 @@ interface LanguagesRepository {
                             )
                     }
                 ).addTo(compositeDisposable)
+        }
+
+        override fun getLanguageFromIso(iso: String): LiveData<LanguagesResponseBody> {
+            return dao.getLanguageFromISO(iso)
+
         }
 
 

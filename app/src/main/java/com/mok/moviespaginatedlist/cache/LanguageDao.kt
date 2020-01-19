@@ -12,6 +12,10 @@ interface LanguageDao {
     @Query("SELECT * FROM language")
     fun language(): LiveData<List<LanguagesResponseBody>>
 
+    @Query("SELECT * FROM language Where iso_639_1 == :iso ")
+    fun getLanguageFromISO(iso: String): LiveData<LanguagesResponseBody>
+
+
     @Transaction
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertAllLanguages(list: List<LanguagesResponseBody>): Completable

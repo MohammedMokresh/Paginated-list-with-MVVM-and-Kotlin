@@ -31,6 +31,10 @@ class MoviesViewModel(
         movieRepository.deleteAllExceptfirstTen()
     }
 
+    fun getMovieById(movieId: Int): LiveData<Result> {
+        return movieRepository.getMovieById(movieId)
+    }
+
     /**
      * Retry all failed petitions boundary callback
      */

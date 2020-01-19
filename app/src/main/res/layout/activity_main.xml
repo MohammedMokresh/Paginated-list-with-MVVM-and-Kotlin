@@ -2,15 +2,40 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:orientation="vertical"
         tools:context=".ui.MainActivity">
+
+        <RelativeLayout
+            android:id="@+id/header"
+            style="@style/toolbar_style">
+
+
+            <TextView
+                style="@style/text_bold_20_black"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_centerInParent="true"
+                android:gravity="center"
+                android:lineSpacingMultiplier="1.20"
+                android:text="@string/movies_list" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_alignParentBottom="true"
+                android:background="@color/divider" />
+
+
+        </RelativeLayout>
 
         <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
             android:id="@+id/movieList_SwipeRefreshLayout"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:layout_below="@+id/header">
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/movies_RecyclerView"
@@ -19,6 +44,10 @@
 
         </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
+        <FrameLayout
+            android:id="@+id/details_FrameLayout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+    </RelativeLayout>
 </layout>

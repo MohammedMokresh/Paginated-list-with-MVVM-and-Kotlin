@@ -3,11 +3,6 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <data>
-
-
-    </data>
-
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="@dimen/_220sdp"
@@ -24,7 +19,6 @@
                 android:id="@+id/movie_poster_ImageView"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="#000"
                 android:scaleType="fitXY" />
 
 
@@ -42,26 +36,19 @@
 
                 <TextView
                     android:id="@+id/title_TextView"
+                    style="@style/text_regular_14_white"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:ellipsize="end"
-                    android:text="asdasdasd"
-                    android:textColor="#ffffff"
-                    android:textSize="14sp"
-                    app:fontFamily="@font/lato_bold" />
+                    android:ellipsize="end" />
 
 
                 <TextView
                     android:id="@+id/popularity_textView"
+                    style="@style/text_regular_14_white"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="2dp"
-                    android:ellipsize="end"
-                    android:lineSpacingMultiplier="1.25"
-                    android:text="asdasdasd"
-                    android:textColor="#ffffff"
-                    android:textSize="14sp"
-                    app:fontFamily="@font/lato_regular" />
+                    android:ellipsize="end" />
             </LinearLayout>
 
         </RelativeLayout>

@@ -17,7 +17,6 @@ android {
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 
 
-
         buildConfigField "String", "BASE_URL", "\"https://api.themoviedb.org/3/\""
         buildConfigField "String", "API_KEY", "\"328c283cd27bd1877d9080ccb1604c91\""
 
@@ -88,7 +87,6 @@ dependencies {
 
 
     debugImplementation 'androidx.fragment:fragment-testing:1.2.0-rc05'
-
 
 
     testImplementation 'junit:junit:4.12'

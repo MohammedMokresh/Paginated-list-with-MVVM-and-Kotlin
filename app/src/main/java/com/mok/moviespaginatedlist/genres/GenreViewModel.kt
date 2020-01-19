@@ -12,6 +12,11 @@ class GenreViewModel(
         return genreRepository.getAllGenres()
     }
 
+    fun getGenreById(genreId: Int): LiveData<Genre> {
+        return genreRepository.getGenreById(genreId)
+    }
+
+
     fun insertGenresInLocal() {
         return genreRepository.insertGenresInLocal()
     }

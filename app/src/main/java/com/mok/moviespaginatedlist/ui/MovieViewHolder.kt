@@ -1,21 +1,21 @@
 package com.mok.moviespaginatedlist.ui
 
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.FragmentManager
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
-import com.bumptech.glide.load.engine.DiskCacheStrategy
-import com.mok.moviespaginatedlist.BuildConfig
 import com.mok.moviespaginatedlist.R
 import com.mok.moviespaginatedlist.databinding.MovieItemBinding
 import com.mok.moviespaginatedlist.models.Result
+import com.mok.moviespaginatedlist.utils.FragmentSwitcher
+import com.mok.moviespaginatedlist.utils.ImageUtil
 
-class MovieViewHolder(itemBinding: MovieItemBinding) : RecyclerView.ViewHolder(itemBinding.root) {
+class MovieViewHolder(itemBinding: MovieItemBinding, fragmentManager: FragmentManager) :
+    RecyclerView.ViewHolder(itemBinding.root) {
 
     companion object {
-        fun create(parent: ViewGroup): MovieViewHolder {
+        fun create(parent: ViewGroup, fragmentManager: FragmentManager): MovieViewHolder {
 
             val binding: MovieItemBinding =
                 DataBindingUtil.inflate(
@@ -24,32 +24,41 @@ class MovieViewHolder(itemBinding: MovieItemBinding) : RecyclerView.ViewHolder(i
                     parent,
                     false
                 )
-            return MovieViewHolder(binding)
+            return MovieViewHolder(binding, fragmentManager)
         }
     }
 
     var binding: MovieItemBinding = itemBinding
+    var fragmentManager: FragmentManager = fragmentManager
 
     fun bindTo(result: Result?) {
 
 
         result?.let {
-            if (result.posterPath != null)
-                Glide.with(binding.root.context)
-                    .load(BuildConfig.SMALL_IMAGE_PREFIX + result.posterPath)
-                    .fitCenter().centerCrop()
-                    .diskCacheStrategy(DiskCacheStrategy.ALL)
-                    .into(binding.moviePosterImageView)
-
+                ImageUtil.renderImage(
+                    result.posterPath, binding.moviePosterImageView
+                    , R.drawable.image_not_found
+                )
 
             if (result.title != null)
                 binding.titleTextView.text = result.title
 
             if (result.popularity != null)
                 binding.popularityTextView.text = result.popularity.toString()
-            Log.e("genres", result.genreIds.toString())
+
+
+            binding.root.setOnClickListener {
+                if (result.id != null)
+                    FragmentSwitcher.addFragment(
+                        fragmentManager,
+                        R.id.details_FrameLayout,
+                        MovieDetailsFragment.newInstance(result.id)
+                    )
+
+            }
 
         }
+
 
     }
 

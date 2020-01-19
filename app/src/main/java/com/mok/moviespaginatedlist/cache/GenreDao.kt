@@ -12,6 +12,11 @@ interface GenreDao {
     @Query("SELECT * FROM genre")
     fun genres(): LiveData<List<Genre>>
 
+
+    @Query("SELECT * FROM genre Where genre_id == :genreId ")
+    fun getGenreById(genreId: Int): LiveData<Genre>
+
+
     @Transaction
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertAllGenres(list: List<Genre>): Completable
