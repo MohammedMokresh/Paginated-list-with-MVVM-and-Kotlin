@@ -6,7 +6,7 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import com.mok.moviespaginatedlist.models.Result
 
-@Database(entities = [Result::class], version = 1, exportSchema = false)
+@Database(entities = [Result::class], version = 2, exportSchema = false)
 abstract class AppDatabase : RoomDatabase() {
 
     abstract fun movieDAO(): MovieDao
@@ -25,6 +25,7 @@ abstract class AppDatabase : RoomDatabase() {
 
         private fun buildDatabase(context: Context): AppDatabase {
             return Room.databaseBuilder(context, AppDatabase::class.java, DATABASE_NAME)
+                .fallbackToDestructiveMigration()
                 .build()
         }
     }

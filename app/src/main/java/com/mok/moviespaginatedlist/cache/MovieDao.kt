@@ -27,4 +27,7 @@ interface MovieDao {
     @Query("DELETE FROM movie")
     fun deleteAll(): Completable
 
+
+    @Query("DELETE FROM movie WHERE id NOT IN (SELECT id from movie limit 10)")
+    fun deleteAllExceptfirstTen()
 }

@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModel
 import com.mok.moviespaginatedlist.models.Result
 import com.mok.moviespaginatedlist.repository.MovieRepository
 import com.mok.moviespaginatedlist.utils.liveData
+import com.mok.moviespaginatedlist.utils.paginationUtils.GenericBoundaryCallback
 import com.mok.moviespaginatedlist.utils.paginationUtils.Listing
 
 class MoviesViewModel(
@@ -21,6 +22,16 @@ class MoviesViewModel(
     val dataSource = Transformations.switchMap(listing) { it.getDataSource() }
     val networkState = Transformations.switchMap(listing) { it.getNetworkState() }
 
+
+    fun refreshPage():LiveData<GenericBoundaryCallback<Result>> {
+
+        return Transformations.switchMap(listing) { it.getBoundaryCallback()}
+//        boundaryCallback.value?.refreshPage()
+    }
+
+    fun deleteAllExceptfirstTen() {
+        movieRepository.deleteAllExceptfirstTen()
+    }
 
     /**
      * Retry all failed petitions boundary callback

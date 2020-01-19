@@ -9,6 +9,7 @@ import com.mok.moviespaginatedlist.utils.paginationUtils.GenericBoundaryCallback
 import com.mok.moviespaginatedlist.utils.paginationUtils.Listing
 import io.reactivex.Completable
 import io.reactivex.Single
+import io.reactivex.schedulers.Schedulers
 
 interface MovieRepository {
 
@@ -19,6 +20,8 @@ interface MovieRepository {
 
 
     fun getListable(): Listing<Result>
+
+    fun deleteAllExceptfirstTen()
 
     open class MoviesRepositoryImpl(
         private val service: MoviesListService,
@@ -39,8 +42,6 @@ interface MovieRepository {
                     )
                 }
 
-
-
                 override fun getDataSource() =
                     dao.getAllPaged().map { it }.toLiveData(
                         pageSize = SIZE_PAGE,
@@ -52,6 +53,19 @@ interface MovieRepository {
 
             }
         }
+
+
+        override fun deleteAllExceptfirstTen() {
+            Completable.fromAction(this::releaseTheExtraCache)
+                .subscribeOn(Schedulers.io())
+                .subscribe()
+        }
+
+
+        private fun releaseTheExtraCache() {
+            dao.deleteAllExceptfirstTen()
+        }
+
 
         fun insertMovies(list: List<Result>): Completable {
             return dao.insertAll(list.map { it })

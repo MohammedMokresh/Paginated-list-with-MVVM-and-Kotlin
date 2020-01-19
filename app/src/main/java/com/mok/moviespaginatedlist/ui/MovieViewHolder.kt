@@ -38,6 +38,14 @@ class MovieViewHolder(itemBinding: MovieItemBinding) : RecyclerView.ViewHolder(i
                     .fitCenter().centerCrop()
                     .diskCacheStrategy(DiskCacheStrategy.ALL)
                     .into(binding.moviePosterImageView)
+
+
+            if (result.title!=null)
+                binding.titleTextView.text=result.title
+
+            if (result.popularity!=null)
+                binding.popularityTextView.text= result.popularity.toString()
+
         }
 
     }

@@ -29,8 +29,19 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
         initAdapter()
+
+
+        binding.movieListSwipeRefreshLayout.setOnRefreshListener {
+            viewModel.refreshPage().observe(this, Observer { it.refreshPage() })
+            binding.movieListSwipeRefreshLayout.isRefreshing = false
+        }
     }
 
+    override fun onStop() {
+        super.onStop()
+
+        viewModel.deleteAllExceptfirstTen()
+    }
 
     private fun initAdapter() {
         binding.moviesRecyclerView.layoutManager = layoutManager

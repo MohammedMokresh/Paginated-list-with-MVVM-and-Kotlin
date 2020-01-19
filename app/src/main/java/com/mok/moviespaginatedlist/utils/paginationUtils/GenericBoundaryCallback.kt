@@ -20,6 +20,8 @@ class GenericBoundaryCallback<T>(
     private val insertAllItems: (items: List<T>) -> Completable
 ) : PagedList.BoundaryCallback<Result>() {
 
+    private var loadOnce: Boolean = true
+
     private val helper =
         PagingRequestHelper(
             Executors.newSingleThreadExecutor()
@@ -30,9 +32,10 @@ class GenericBoundaryCallback<T>(
     private var offsetCount = 1
 
     fun refreshPage() {
+        offsetCount = 1
         networkState.value =
             NetworkState.LOADING
-        getPage(1)
+        getPage(offsetCount)
             .subscribeOn(Schedulers.io())
             .flatMapCompletable {
                 removeAllItems()
@@ -72,7 +75,10 @@ class GenericBoundaryCallback<T>(
 
 
     override fun onItemAtFrontLoaded(itemAtFront: Result) {
-        // ignored, since we only ever append to what's in the DB
+        if (loadOnce) {
+            loadOnce = false
+            refreshPage()
+        }
     }
 
 
