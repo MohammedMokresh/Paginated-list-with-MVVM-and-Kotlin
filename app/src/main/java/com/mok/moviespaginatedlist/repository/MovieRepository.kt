@@ -36,7 +36,7 @@ interface MovieRepository {
                 /** Create the boundary callback **/
                 val bc: GenericBoundaryCallback<Result> by lazy {
                     GenericBoundaryCallback(
-                        { dao.deleteAll() },
+                        { dao.deleteAllMovies() },
                         { movie(it) },
                         { insertMovies(it) }
                     )
@@ -68,7 +68,7 @@ interface MovieRepository {
 
 
         fun insertMovies(list: List<Result>): Completable {
-            return dao.insertAll(list.map { it })
+            return dao.insertAllMovies(list.map { it })
         }
 
         fun movie(offset: Int): Single<List<Result>> =

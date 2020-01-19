@@ -3,6 +3,10 @@ package com.mok.moviespaginatedlist.di
 import com.mok.moviespaginatedlist.BuildConfig
 import com.mok.moviespaginatedlist.MoviesListService
 import com.mok.moviespaginatedlist.cache.AppDatabase
+import com.mok.moviespaginatedlist.genres.GenreRepository
+import com.mok.moviespaginatedlist.genres.GenreViewModel
+import com.mok.moviespaginatedlist.languages.LanguagesRepository
+import com.mok.moviespaginatedlist.languages.LanguagesViewModel
 import com.mok.moviespaginatedlist.repository.MovieRepository
 import com.mok.moviespaginatedlist.ui.MoviesViewModel
 import com.mok.moviespaginatedlist.utils.BaseSchedulers
@@ -18,19 +22,40 @@ val cacheModule by lazy {
 
     module {
         single {
+            AppDatabase.getInstance(get()).genreDao()
+        }
+        single {
             AppDatabase.getInstance(get()).movieDAO()
         }
+        single {
+            AppDatabase.getInstance(get()).languageDao()
+
+        }
+
     }
 }
 
 
 val repositoryModule by lazy {
     module {
+
+        single<GenreRepository> {
+            GenreRepository.GenreRepositoryImpl(get(), get())
+
+        }
         single<MovieRepository> {
             MovieRepository.MoviesRepositoryImpl(get(), get())
+
         }
+        single<LanguagesRepository> {
+            LanguagesRepository.LanguagesRepositoryImpl(get(), get())
+
+        }
+
+
     }
 }
+
 
 val appModule by lazy {
     module {
@@ -42,9 +67,20 @@ val appModule by lazy {
 val viewModelModule by lazy {
     module {
         viewModel {
-            MoviesViewModel(get())
+            GenreViewModel(get())
+
         }
+        viewModel {
+            MoviesViewModel(get())
+
+        }
+        viewModel {
+            LanguagesViewModel(get())
+
+        }
+
     }
+
 }
 
 

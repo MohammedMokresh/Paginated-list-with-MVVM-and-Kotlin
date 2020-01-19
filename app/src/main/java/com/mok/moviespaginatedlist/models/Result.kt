@@ -1,11 +1,9 @@
 package com.mok.moviespaginatedlist.models
 
 
-import androidx.room.ColumnInfo
-import androidx.room.Entity
-import androidx.room.Index
-import androidx.room.PrimaryKey
+import androidx.room.*
 import com.google.gson.annotations.SerializedName
+import com.mok.moviespaginatedlist.utils.Converters
 
 
 @Entity(
@@ -33,6 +31,11 @@ data class Result(
     @ColumnInfo(name = "overview")
     @SerializedName("overview")
     val overview: String?,
+
+    @TypeConverters(Converters::class)
+    @ColumnInfo(name = "genre_ids")
+    @SerializedName("genre_ids")
+    val genreIds: List<Int?>,
     @ColumnInfo(name = "popularity")
     @SerializedName("popularity")
     val popularity: Double?,

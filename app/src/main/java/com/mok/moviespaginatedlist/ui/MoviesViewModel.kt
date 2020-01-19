@@ -23,10 +23,8 @@ class MoviesViewModel(
     val networkState = Transformations.switchMap(listing) { it.getNetworkState() }
 
 
-    fun refreshPage():LiveData<GenericBoundaryCallback<Result>> {
-
-        return Transformations.switchMap(listing) { it.getBoundaryCallback()}
-//        boundaryCallback.value?.refreshPage()
+    fun refreshPage(): LiveData<GenericBoundaryCallback<Result>> {
+        return Transformations.switchMap(listing) { it.getBoundaryCallback() }
     }
 
     fun deleteAllExceptfirstTen() {

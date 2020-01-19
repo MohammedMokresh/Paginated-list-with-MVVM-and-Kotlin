@@ -4,12 +4,26 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import androidx.room.TypeConverters
+import com.mok.moviespaginatedlist.genres.Genre
+import com.mok.moviespaginatedlist.languages.LanguagesResponseBody
 import com.mok.moviespaginatedlist.models.Result
+import com.mok.moviespaginatedlist.utils.Converters
 
-@Database(entities = [Result::class], version = 2, exportSchema = false)
+@Database(
+    entities = [Result::class, Genre::class, LanguagesResponseBody::class],
+    version = 4,
+    exportSchema = false
+)
+@TypeConverters(Converters::class)
 abstract class AppDatabase : RoomDatabase() {
 
     abstract fun movieDAO(): MovieDao
+
+    abstract fun languageDao(): LanguageDao
+
+    abstract fun genreDao(): GenreDao
+
 
     companion object {
 

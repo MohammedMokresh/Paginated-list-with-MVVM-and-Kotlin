@@ -8,6 +8,9 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.mok.moviespaginatedlist.R
 import com.mok.moviespaginatedlist.databinding.ActivityMainBinding
+import com.mok.moviespaginatedlist.genres.GenreViewModel
+import com.mok.moviespaginatedlist.languages.LanguagesViewModel
+import com.mok.moviespaginatedlist.utils.Status
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import timber.log.Timber
 
@@ -16,6 +19,10 @@ class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
 
     private val viewModel: MoviesViewModel by viewModel()
+
+    private val genreViewModel: GenreViewModel by viewModel()
+
+    private val languagesViewModel: LanguagesViewModel by viewModel()
 
     private val layoutManager: GridLayoutManager by lazy {
         GridLayoutManager(applicationContext, 2, RecyclerView.VERTICAL, false)
@@ -30,10 +37,12 @@ class MainActivity : AppCompatActivity() {
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
         initAdapter()
 
+        genreViewModel.insertGenresInLocal()
+        languagesViewModel.callAndSaveLanguages()
+
 
         binding.movieListSwipeRefreshLayout.setOnRefreshListener {
             viewModel.refreshPage().observe(this, Observer { it.refreshPage() })
-            binding.movieListSwipeRefreshLayout.isRefreshing = false
         }
     }
 
@@ -55,6 +64,11 @@ class MainActivity : AppCompatActivity() {
 
         viewModel.networkState
             .observe(this, Observer {
+
+                if (it.status == Status.SUCCESS) {
+                    binding.movieListSwipeRefreshLayout.isRefreshing = false
+                }
+
                 Timber.d("Received a new NetworkState STATUS ---- ${it.status} Message  ----- ${it.msg}")
                 adapter.setNetworkState(it)
             })
