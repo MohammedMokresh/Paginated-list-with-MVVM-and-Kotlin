@@ -1,9 +1,9 @@
-package com.mok.moviespaginatedlist.cache
+package com.mok.moviespaginatedlist.moviesList.data
 
 import androidx.lifecycle.LiveData
 import androidx.paging.DataSource
 import androidx.room.*
-import com.mok.moviespaginatedlist.models.Result
+import com.mok.moviespaginatedlist.moviesList.models.Result
 import io.reactivex.Completable
 import io.reactivex.Single
 

@@ -1,10 +1,10 @@
-package com.mok.moviespaginatedlist.ui
+package com.mok.moviespaginatedlist.moviesList
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.Transformations
 import androidx.lifecycle.ViewModel
-import com.mok.moviespaginatedlist.models.Result
-import com.mok.moviespaginatedlist.repository.MovieRepository
+import com.mok.moviespaginatedlist.moviesList.models.Result
+import com.mok.moviespaginatedlist.moviesList.data.MovieRepository
 import com.mok.moviespaginatedlist.utils.liveData
 import com.mok.moviespaginatedlist.utils.paginationUtils.GenericBoundaryCallback
 import com.mok.moviespaginatedlist.utils.paginationUtils.Listing

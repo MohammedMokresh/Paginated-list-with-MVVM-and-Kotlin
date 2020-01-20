@@ -1,4 +1,4 @@
-package com.mok.moviespaginatedlist.models
+package com.mok.moviespaginatedlist.moviesList.models
 
 
 import androidx.room.*

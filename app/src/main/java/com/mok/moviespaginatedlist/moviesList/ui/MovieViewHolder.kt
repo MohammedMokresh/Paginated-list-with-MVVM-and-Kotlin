@@ -1,4 +1,4 @@
-package com.mok.moviespaginatedlist.ui
+package com.mok.moviespaginatedlist.moviesList.ui
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -7,7 +7,7 @@ import androidx.fragment.app.FragmentManager
 import androidx.recyclerview.widget.RecyclerView
 import com.mok.moviespaginatedlist.R
 import com.mok.moviespaginatedlist.databinding.MovieItemBinding
-import com.mok.moviespaginatedlist.models.Result
+import com.mok.moviespaginatedlist.moviesList.models.Result
 import com.mok.moviespaginatedlist.utils.FragmentSwitcher
 import com.mok.moviespaginatedlist.utils.ImageUtil
 
@@ -35,10 +35,10 @@ class MovieViewHolder(itemBinding: MovieItemBinding, fragmentManager: FragmentMa
 
 
         result?.let {
-                ImageUtil.renderImage(
-                    result.posterPath, binding.moviePosterImageView
-                    , R.drawable.image_not_found
-                )
+            ImageUtil.renderImage(
+                result.posterPath, binding.moviePosterImageView
+                , R.drawable.image_not_found
+            )
 
             if (result.title != null)
                 binding.titleTextView.text = result.title

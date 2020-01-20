@@ -1,6 +1,7 @@
-package com.mok.moviespaginatedlist
+package com.mok.moviespaginatedlist.app
 
 import android.app.Application
+import com.mok.moviespaginatedlist.BuildConfig
 import com.mok.moviespaginatedlist.di.AppKoinModules
 import io.reactivex.plugins.RxJavaPlugins
 import org.koin.android.ext.koin.androidContext

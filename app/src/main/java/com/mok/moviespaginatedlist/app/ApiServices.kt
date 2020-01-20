@@ -1,17 +1,18 @@
-package com.mok.moviespaginatedlist
+package com.mok.moviespaginatedlist.app
 
-import com.mok.moviespaginatedlist.genres.Genre
-import com.mok.moviespaginatedlist.genres.GenresResponseBody
-import com.mok.moviespaginatedlist.languages.LanguagesResponseBody
-import com.mok.moviespaginatedlist.models.MoviesListResponseBody
-import com.mok.moviespaginatedlist.models.Result
+import com.mok.moviespaginatedlist.BuildConfig
+import com.mok.moviespaginatedlist.genres.models.Genre
+import com.mok.moviespaginatedlist.genres.models.GenresResponseBody
+import com.mok.moviespaginatedlist.languages.models.LanguagesResponseBody
+import com.mok.moviespaginatedlist.moviesList.models.MoviesListResponseBody
+import com.mok.moviespaginatedlist.moviesList.models.Result
 import com.mok.moviespaginatedlist.utils.BaseSchedulers
 import io.reactivex.Single
 import retrofit2.Retrofit
 import retrofit2.http.GET
 import retrofit2.http.Query
 
-interface MoviesListService {
+interface ApiServices {
     fun movies(page: Int): Single<List<Result>>
 
     fun getGenresList(): Single<List<Genre>>
@@ -20,7 +21,7 @@ interface MoviesListService {
     class Network(
         private val retrofit: Retrofit,
         private val schedulers: BaseSchedulers
-    ) : MoviesListService {
+    ) : ApiServices {
 
         override fun movies(page: Int): Single<List<Result>> {
 

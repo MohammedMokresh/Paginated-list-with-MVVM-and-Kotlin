@@ -1,4 +1,4 @@
-package com.mok.moviespaginatedlist.models
+package com.mok.moviespaginatedlist.moviesList.models
 
 
 import com.google.gson.annotations.SerializedName

@@ -1,4 +1,4 @@
-package com.mok.moviespaginatedlist.languages
+package com.mok.moviespaginatedlist.languages.models
 
 
 import androidx.room.ColumnInfo

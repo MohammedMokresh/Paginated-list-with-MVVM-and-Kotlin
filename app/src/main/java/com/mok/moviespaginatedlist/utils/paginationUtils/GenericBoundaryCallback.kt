@@ -3,7 +3,7 @@ package com.mok.moviespaginatedlist.utils.paginationUtils
 import androidx.annotation.MainThread
 import androidx.lifecycle.MutableLiveData
 import androidx.paging.PagedList
-import com.mok.moviespaginatedlist.models.Result
+import com.mok.moviespaginatedlist.moviesList.models.Result
 import com.mok.moviespaginatedlist.utils.NetworkState
 import io.reactivex.Completable
 import io.reactivex.Single

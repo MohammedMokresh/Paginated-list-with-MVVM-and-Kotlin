@@ -1,13 +1,16 @@
-package com.mok.moviespaginatedlist.cache
+package com.mok.moviespaginatedlist.app
 
 import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
-import com.mok.moviespaginatedlist.genres.Genre
-import com.mok.moviespaginatedlist.languages.LanguagesResponseBody
-import com.mok.moviespaginatedlist.models.Result
+import com.mok.moviespaginatedlist.genres.models.Genre
+import com.mok.moviespaginatedlist.genres.data.GenreDao
+import com.mok.moviespaginatedlist.languages.data.LanguageDao
+import com.mok.moviespaginatedlist.languages.models.LanguagesResponseBody
+import com.mok.moviespaginatedlist.moviesList.models.Result
+import com.mok.moviespaginatedlist.moviesList.data.MovieDao
 import com.mok.moviespaginatedlist.utils.Converters
 
 @Database(

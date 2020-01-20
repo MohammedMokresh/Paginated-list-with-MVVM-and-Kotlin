@@ -1,4 +1,4 @@
-package com.mok.moviespaginatedlist.ui
+package com.mok.moviespaginatedlist.moviesList.ui
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
@@ -10,6 +10,7 @@ import com.mok.moviespaginatedlist.R
 import com.mok.moviespaginatedlist.databinding.ActivityMainBinding
 import com.mok.moviespaginatedlist.genres.GenreViewModel
 import com.mok.moviespaginatedlist.languages.LanguagesViewModel
+import com.mok.moviespaginatedlist.moviesList.MoviesViewModel
 import com.mok.moviespaginatedlist.utils.Status
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import timber.log.Timber

@@ -1,10 +1,9 @@
-package com.mok.moviespaginatedlist.repository
+package com.mok.moviespaginatedlist.moviesList.data
 
 import androidx.lifecycle.LiveData
 import androidx.paging.toLiveData
-import com.mok.moviespaginatedlist.MoviesListService
-import com.mok.moviespaginatedlist.cache.MovieDao
-import com.mok.moviespaginatedlist.models.Result
+import com.mok.moviespaginatedlist.app.ApiServices
+import com.mok.moviespaginatedlist.moviesList.models.Result
 import com.mok.moviespaginatedlist.utils.liveData
 import com.mok.moviespaginatedlist.utils.paginationUtils.GenericBoundaryCallback
 import com.mok.moviespaginatedlist.utils.paginationUtils.Listing
@@ -27,7 +26,7 @@ interface MovieRepository {
     fun getMovieById(movieId: Int): LiveData<Result>
 
     open class MoviesRepositoryImpl(
-        private val service: MoviesListService,
+        private val service: ApiServices,
         private val dao: MovieDao
     ) : MovieRepository {
 

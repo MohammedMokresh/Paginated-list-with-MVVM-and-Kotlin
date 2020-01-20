@@ -1,14 +1,14 @@
 package com.mok.moviespaginatedlist.di
 
 import com.mok.moviespaginatedlist.BuildConfig
-import com.mok.moviespaginatedlist.MoviesListService
-import com.mok.moviespaginatedlist.cache.AppDatabase
-import com.mok.moviespaginatedlist.genres.GenreRepository
+import com.mok.moviespaginatedlist.app.ApiServices
+import com.mok.moviespaginatedlist.app.AppDatabase
+import com.mok.moviespaginatedlist.genres.data.GenreRepository
 import com.mok.moviespaginatedlist.genres.GenreViewModel
-import com.mok.moviespaginatedlist.languages.LanguagesRepository
+import com.mok.moviespaginatedlist.languages.data.LanguagesRepository
 import com.mok.moviespaginatedlist.languages.LanguagesViewModel
-import com.mok.moviespaginatedlist.repository.MovieRepository
-import com.mok.moviespaginatedlist.ui.MoviesViewModel
+import com.mok.moviespaginatedlist.moviesList.data.MovieRepository
+import com.mok.moviespaginatedlist.moviesList.MoviesViewModel
 import com.mok.moviespaginatedlist.utils.BaseSchedulers
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -88,7 +88,7 @@ val serviceModule by lazy {
 
     module {
 
-        single<MoviesListService> { MoviesListService.Network(get(), get()) }
+        single<ApiServices> { ApiServices.Network(get(), get()) }
 
 
         single<Retrofit> {

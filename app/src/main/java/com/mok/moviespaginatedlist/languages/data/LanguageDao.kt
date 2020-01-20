@@ -1,8 +1,8 @@
-package com.mok.moviespaginatedlist.cache
+package com.mok.moviespaginatedlist.languages.data
 
 import androidx.lifecycle.LiveData
 import androidx.room.*
-import com.mok.moviespaginatedlist.languages.LanguagesResponseBody
+import com.mok.moviespaginatedlist.languages.models.LanguagesResponseBody
 import io.reactivex.Completable
 
 

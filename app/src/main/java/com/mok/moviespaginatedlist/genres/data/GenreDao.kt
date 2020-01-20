@@ -1,8 +1,8 @@
-package com.mok.moviespaginatedlist.cache
+package com.mok.moviespaginatedlist.genres.data
 
 import androidx.lifecycle.LiveData
 import androidx.room.*
-import com.mok.moviespaginatedlist.genres.Genre
+import com.mok.moviespaginatedlist.genres.models.Genre
 import io.reactivex.Completable
 
 

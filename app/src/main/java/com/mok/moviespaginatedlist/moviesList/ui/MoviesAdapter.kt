@@ -1,11 +1,11 @@
-package com.mok.moviespaginatedlist.ui
+package com.mok.moviespaginatedlist.moviesList.ui
 
 import android.view.ViewGroup
 import androidx.fragment.app.FragmentManager
 import androidx.paging.PagedListAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
-import com.mok.moviespaginatedlist.models.Result
+import com.mok.moviespaginatedlist.moviesList.models.Result
 import com.mok.moviespaginatedlist.utils.NetworkState
 
 class MoviesAdapter(fragmentManager: FragmentManager) :

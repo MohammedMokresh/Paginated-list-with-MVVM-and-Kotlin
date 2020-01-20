@@ -1,4 +1,4 @@
-package com.mok.moviespaginatedlist.genres
+package com.mok.moviespaginatedlist.genres.models
 
 
 import com.google.gson.annotations.SerializedName

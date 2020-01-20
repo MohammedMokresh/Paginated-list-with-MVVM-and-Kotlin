@@ -1,4 +1,4 @@
-package com.mok.moviespaginatedlist.genres
+package com.mok.moviespaginatedlist.genres.models
 
 
 import androidx.room.ColumnInfo

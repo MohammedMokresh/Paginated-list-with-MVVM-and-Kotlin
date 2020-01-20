@@ -1,19 +1,18 @@
-package com.mok.moviespaginatedlist.ui
+package com.mok.moviespaginatedlist.moviesList.ui
 
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
-import com.mok.moviespaginatedlist.BuildConfig
 import com.mok.moviespaginatedlist.R
 import com.mok.moviespaginatedlist.databinding.FragmentMovieDetailsBinding
 import com.mok.moviespaginatedlist.genres.GenreViewModel
 import com.mok.moviespaginatedlist.languages.LanguagesViewModel
+import com.mok.moviespaginatedlist.moviesList.MoviesViewModel
 import com.mok.moviespaginatedlist.utils.ImageUtil
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
