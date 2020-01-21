@@ -8,11 +8,10 @@ import androidx.recyclerview.widget.RecyclerView
 import com.mok.moviespaginatedlist.moviesList.models.Result
 import com.mok.moviespaginatedlist.utils.NetworkState
 
-class MoviesAdapter(fragmentManager: FragmentManager) :
+class MoviesAdapter(private var fragmentManager: FragmentManager) :
     PagedListAdapter<Result, RecyclerView.ViewHolder>(POST_COMPARATOR) {
 
     private var networkState: NetworkState? = null
-    private var fragmentManager: FragmentManager = fragmentManager
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         return MovieViewHolder.create(parent, fragmentManager)
@@ -26,7 +25,7 @@ class MoviesAdapter(fragmentManager: FragmentManager) :
     }
 
 
-    fun hasExtraRow() = networkState != null && networkState != NetworkState.LOADED
+    private fun hasExtraRow() = networkState != null && networkState != NetworkState.LOADED
 
 
     fun setNetworkState(newNetworkState: NetworkState?) {

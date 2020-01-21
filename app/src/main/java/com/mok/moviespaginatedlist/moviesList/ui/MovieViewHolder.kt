@@ -11,7 +11,7 @@ import com.mok.moviespaginatedlist.moviesList.models.Result
 import com.mok.moviespaginatedlist.utils.FragmentSwitcher
 import com.mok.moviespaginatedlist.utils.ImageUtil
 
-class MovieViewHolder(itemBinding: MovieItemBinding, fragmentManager: FragmentManager) :
+class MovieViewHolder(itemBinding: MovieItemBinding, private var fragmentManager: FragmentManager) :
     RecyclerView.ViewHolder(itemBinding.root) {
 
     companion object {
@@ -29,7 +29,6 @@ class MovieViewHolder(itemBinding: MovieItemBinding, fragmentManager: FragmentMa
     }
 
     var binding: MovieItemBinding = itemBinding
-    var fragmentManager: FragmentManager = fragmentManager
 
     fun bindTo(result: Result?) {
 

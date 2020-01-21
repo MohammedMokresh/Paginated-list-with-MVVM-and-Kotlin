@@ -16,9 +16,7 @@ import com.mok.moviespaginatedlist.moviesList.MoviesViewModel
 import com.mok.moviespaginatedlist.utils.ImageUtil
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-/**
- * A simple [Fragment] subclass.
- */
+
 class MovieDetailsFragment : Fragment() {
     private lateinit var binding: FragmentMovieDetailsBinding
 

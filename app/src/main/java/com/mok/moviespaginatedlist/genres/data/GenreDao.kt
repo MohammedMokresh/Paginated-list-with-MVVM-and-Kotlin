@@ -9,9 +9,6 @@ import io.reactivex.Completable
 @Dao
 interface GenreDao {
 
-    @Query("SELECT * FROM genre")
-    fun genres(): LiveData<List<Genre>>
-
 
     @Query("SELECT * FROM genre Where genre_id == :genreId ")
     fun getGenreById(genreId: Int): LiveData<Genre>
