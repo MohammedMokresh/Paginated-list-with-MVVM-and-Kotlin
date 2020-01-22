@@ -3,7 +3,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.mok.moviespaginatedlist">
 
-
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
@@ -15,8 +14,11 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
+        <activity android:name=".BookTicketsActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar"/>
         <activity
-            android:name="com.mok.moviespaginatedlist.moviesList.ui.MainActivity"
+            android:name=".moviesList.ui.MainActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>

@@ -97,8 +97,6 @@ dependencies {
     testImplementation "org.jetbrains.kotlin:kotlin-test-junit:$kotlin_version"
 
 
-
-
     implementation 'androidx.annotation:annotation:1.1.0'
 
 }

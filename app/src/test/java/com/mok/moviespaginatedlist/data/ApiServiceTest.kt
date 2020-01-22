@@ -14,7 +14,7 @@ import org.koin.test.inject
 
 
 /**
- * This test are for testing the AoiService
+ * This test are for testing the ApiService
  * **/
 class ApiServiceTest : AutoCloseKoinTest() {
 

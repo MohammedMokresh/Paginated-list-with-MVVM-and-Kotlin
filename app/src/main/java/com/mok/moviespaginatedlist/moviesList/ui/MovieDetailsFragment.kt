@@ -1,6 +1,7 @@
 package com.mok.moviespaginatedlist.moviesList.ui
 
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -8,6 +9,7 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
+import com.mok.moviespaginatedlist.BookTicketsActivity
 import com.mok.moviespaginatedlist.R
 import com.mok.moviespaginatedlist.databinding.FragmentMovieDetailsBinding
 import com.mok.moviespaginatedlist.genres.GenreViewModel
@@ -81,6 +83,13 @@ class MovieDetailsFragment : Fragment() {
 
                 })
 
+        }
+
+        binding.bookButton.setOnClickListener {
+
+            val webViewIntent = Intent(context, BookTicketsActivity::class.java)
+
+            context!!.startActivity(webViewIntent)
         }
 
         return binding.root
